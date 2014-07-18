@@ -40,8 +40,6 @@
      :optimizations :advanced
      :pretty-print false
      :output-wrapper false
-     :preamble ["reagent/react.js"]
-     ;:externs ["react/externs/react.js"]
      :closure-warnings {:non-standard-jsdoc :off}}}]}
 
  :profiles
