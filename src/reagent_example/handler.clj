@@ -32,16 +32,16 @@
 
   (timbre/set-config!
     [:shared-appender-config :rotor]
-    {:path "om_example.log" :max-size (* 512 1024) :backlog 10})
+    {:path "reagent_example.log" :max-size (* 512 1024) :backlog 10})
 
   (if (env :dev) (parser/cache-off!))
-  (timbre/info "om-example started successfully"))
+  (timbre/info "reagent-example started successfully"))
 
 (defn destroy
   "destroy will be called when your application
    shuts down, put any clean up code here"
   []
-  (timbre/info "om-example is shutting down..."))
+  (timbre/info "reagent-example is shutting down..."))
 
 
 
