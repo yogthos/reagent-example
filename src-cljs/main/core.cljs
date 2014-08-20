@@ -23,23 +23,23 @@
             :value (get-value id)
             :onChange #(set-value! id (-> % .-target .-value))}]])
 
-(defn list-item [id k v states]
+(defn list-item [id k v selections]
   (letfn [(handle-click! []
-            (swap! (get states k) not)
-            (set-value! id (->> states (filter (fn [[_ v]] @v)) keys)))]
-    [:li {:class (str "list-group-item" (if @(get states k) " active"))
+            (swap! selections update-in [k] not)                         
+            (set-value! id (->> @selections (filter second) (map first))))]
+    [:li {:class (str "list-group-item" (if (k @selections) " active"))
           :onClick handle-click!}
       v]))
 
 (defn selection-list [id label & items]
-  (let [states (->> items
-                    (map (fn [[k]] [k (atom false)]))
-                    (into {}))]
+  (let [selections (->> items (map (fn [[k]] [k false])) (into {}) atom)]    
     (fn []
-      [row label
-       [:ul.list-group
+      [:div.row
+       [:div.col-md-2 [:span label]]
+       [:div.col-md-5
+        [:div.row
          (for [[k v] items]
-          [list-item id k v states])]])))
+          [list-item id k v selections])]]])))
 
 (defn save-doc []
   (POST (str js/context "/save")
