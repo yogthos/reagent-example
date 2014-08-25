@@ -10,7 +10,7 @@
                 [markdown-clj "0.9.44"]
                 [environ "0.5.0"]
                 [noir-exception "0.2.2"]
-                [org.clojure/clojurescript "0.0-2234"]
+                [org.clojure/clojurescript "0.0-2280"]
                 [reagent "0.4.2"]
                 [cljs-ajax "0.2.6"]]
 
