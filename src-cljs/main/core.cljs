@@ -21,14 +21,14 @@
    [:input {:type "text"
             :class "form-control"
             :value (get-value id)
-            :onChange #(set-value! id (-> % .-target .-value))}]])
+            :on-change #(set-value! id (-> % .-target .-value))}]])
 
 (defn list-item [id k v selections]
   (letfn [(handle-click! []
             (swap! selections update-in [k] not)                         
             (set-value! id (->> @selections (filter second) (map first))))]
     [:li {:class (str "list-group-item" (if (k @selections) " active"))
-          :onClick handle-click!}
+          :on-click handle-click!}
       v]))
 
 (defn selection-list [id label & items]
@@ -59,7 +59,7 @@
      [:p "Saved"]
      [:button {:type "submit"
               :class "btn btn-default"
-              :onClick save-doc}
+              :on-click save-doc}
      "Submit"])])
 
 ;;start the app
